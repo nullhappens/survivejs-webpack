@@ -1,3 +1,5 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 exports.devServer = ({host, port} = {}) => ({
   devServer: {
     historyApiFallback: true,
@@ -44,5 +46,38 @@ exports.loadCSS = ({include, exclude} = {}) => ({
         ]
       }
     ]
+  }
+});
+
+exports.extractCSS = ({include, exclude, use}) => {
+  const plugin = new ExtractTextPlugin({
+    filename: 'css/[name].css'
+  });
+
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          include,
+          exclude,
+          use: plugin.extract({
+            use,
+            fallback: 'style-loader',
+            loader: 'css-loader!sass-loader'
+          })
+        }
+      ]
+    },
+    plugins: [plugin]
+  };
+};
+
+exports.autoprefix = () => ({
+  loader: 'postcss-loader',
+  options: {
+    plugins: () => ([
+      require('autoprefixer')()
+    ])
   }
 });
