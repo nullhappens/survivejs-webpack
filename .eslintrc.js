@@ -10,8 +10,6 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    // no gusta
-    // 'comma-dangle': ['error', 'always-multiline'],
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],

@@ -22,3 +22,27 @@ exports.lintJs = ({include, exclude, options}) => ({
     }]
   }
 });
+
+exports.loadCSS = ({include, exclude} = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        include,
+        exclude,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          {
+            loader: 'fast-sass-loader'
+          }
+        ]
+      }
+    ]
+  }
+});
