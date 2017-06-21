@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const BabiliPlugin = require('babili-webpack-plugin');
 
 exports.devServer = ({host, port} = {}) => ({
   devServer: {
@@ -160,5 +161,11 @@ exports.attachRevision = () => ({
     new webpack.BannerPlugin({
       banner: new GitRevisionPlugin().version()
     })
+  ]
+});
+
+exports.minifyJavascript = () => ({
+  plugins: [
+    new BabiliPlugin()
   ]
 });
