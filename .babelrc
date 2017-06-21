@@ -7,5 +7,6 @@
       "modules": false,
       "debug": true
     }]
-  ]
+  ],
+  "plugins" : ["syntax-dynamic-import"]
 }
