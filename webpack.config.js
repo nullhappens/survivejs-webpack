@@ -46,6 +46,14 @@ const productionConfig = merge([
   },
   parts.clean(PATHS.build),
   parts.minifyJavascript(),
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true
+      },
+      safe: true
+    }
+  }),
   parts.extractCSS({
     use: ['css-loader', parts.autoprefix()]
   }),
