@@ -36,10 +36,17 @@ const productionConfig = merge([
       limit: 150000,
       name: '[name].[ext]'
     }
-  })
+  }),
+  parts.generateSourceMaps({ type: 'source-map' })
 ]);
 
 const developmentConfig = merge([
+  {
+    output: {
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'
+    }
+  },
+  parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
   parts.devServer({
     host: process.env.HOST,
     port: process.env.PORT

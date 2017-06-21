@@ -41,7 +41,10 @@ exports.loadCSS = ({include, exclude} = {}) => ({
             }
           },
           {
-            loader: 'fast-sass-loader'
+            loader: 'fast-sass-loader',
+            options: {
+              sourcemaps: true
+            }
           }
         ]
       }
@@ -131,4 +134,8 @@ exports.loadJs = ({include, exclude} = {}) => ({
       }
     ]
   }
+});
+
+exports.generateSourceMaps = ({type}) => ({
+  devtool: type
 });
