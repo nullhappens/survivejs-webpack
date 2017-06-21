@@ -60,7 +60,7 @@ exports.loadCSS = ({include, exclude} = {}) => ({
 
 exports.extractCSS = ({include, exclude, use} = {}) => {
   const plugin = new ExtractTextPlugin({
-    filename: 'css/[name].css'
+    filename: 'css/[name].[contenthash:8].css'
   });
 
   return {

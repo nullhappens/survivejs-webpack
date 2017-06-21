@@ -38,6 +38,10 @@ const commonConfig = merge([
 
 const productionConfig = merge([
   {
+    output: {
+      chunkFilename: '[name].[chunkhash:8].js',
+      filename: '[name].[chunkhash:8].js'
+    },
     performance: {
       hints: 'warning',
       maxEntrypointSize: 100000,
@@ -60,7 +64,7 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 150000,
-      name: '[name].[ext]'
+      name: '[name].[hash:8].[ext]'
     }
   }),
   parts.generateSourceMaps({ type: 'source-map' }),
