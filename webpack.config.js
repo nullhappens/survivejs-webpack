@@ -12,7 +12,6 @@ const commonConfig = merge([
   {
     entry: {
       app: PATHS.app,
-      vendor: ['react']
     },
     output: {
       path: PATHS.build,
@@ -27,7 +26,14 @@ const commonConfig = merge([
   parts.lintJs({ include: PATHS.app }),
   parts.lintCSS({ include: PATHS.app }),
   parts.loadJs({ include: PATHS.app }),
-  parts.extractBundles(['vendor', 'webpack'])
+  parts.extractBundles([{
+    name: 'vendor',
+    minChunks: ({ resource }) => (
+      resource &&
+      resource.indexOf('node_modules') >= 0 &&
+      resource.match(/\.js$/)
+    )
+  }])
 ]);
 
 const productionConfig = merge([
