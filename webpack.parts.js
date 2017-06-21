@@ -12,7 +12,7 @@ exports.devServer = ({host, port} = {}) => ({
   }
 });
 
-exports.lintJs = ({include, exclude, options}) => ({
+exports.lintJs = ({include, exclude, options} = {}) => ({
   module: {
     rules: [{
       test: /\.js$/,
@@ -49,7 +49,7 @@ exports.loadCSS = ({include, exclude} = {}) => ({
   }
 });
 
-exports.extractCSS = ({include, exclude, use}) => {
+exports.extractCSS = ({include, exclude, use} = {}) => {
   const plugin = new ExtractTextPlugin({
     filename: 'css/[name].css'
   });
@@ -82,7 +82,7 @@ exports.autoprefix = () => ({
   }
 });
 
-exports.lintCSS = ({include, exclude}) => ({
+exports.lintCSS = ({include, exclude} = {}) => ({
   module: {
     rules: [
       {
@@ -99,4 +99,20 @@ exports.lintCSS = ({include, exclude}) => ({
       }
     ]
   }
-})
+});
+
+exports.loadImages = ({include, exclude, options} = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|svg)$/,
+        include,
+        exclude,
+        use: {
+          loader: 'url-loader',
+          options
+        }
+      }
+    ]
+  }
+});
