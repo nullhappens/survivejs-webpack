@@ -64,7 +64,8 @@ const productionConfig = merge([
     }
   }),
   parts.generateSourceMaps({ type: 'source-map' }),
-  parts.attachRevision()
+  parts.attachRevision(),
+  parts.setFreeVariable('process.env.NODE_ENV', 'production')
 ]);
 
 const developmentConfig = merge([
