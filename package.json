@@ -39,6 +39,7 @@
     "lint:js": "eslint app/ webpack.*.js --cache",
     "lint:css": "stylelint app/**/*.scss",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
-    "build": "webpack --env production"
+    "build": "webpack --env production",
+    "stats": "webpack --env production --profile --json > stats.json"
   }
 }
