@@ -40,6 +40,7 @@
     "lint:css": "stylelint app/**/*.scss",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
     "build": "webpack --env production",
+    "build:lib": "webpack --config webpack.lib.js",
     "stats": "webpack --env production --profile --json > stats.json"
   }
 }
