@@ -26,14 +26,20 @@ const commonConfig = merge([
   parts.lintJs({ include: PATHS.app }),
   parts.lintCSS({ include: PATHS.app }),
   parts.loadJs({ include: PATHS.app }),
-  parts.extractBundles([{
-    name: 'vendor',
-    minChunks: ({ resource }) => (
-      resource &&
-      resource.indexOf('node_modules') >= 0 &&
-      resource.match(/\.js$/)
-    )
-  }])
+  parts.extractBundles([
+    {
+      name: 'vendor',
+      minChunks: ({ resource }) => (
+        resource &&
+        resource.indexOf('node_modules') >= 0 &&
+        resource.match(/\.js$/)
+      )
+    },
+    {
+      name: 'manifest',
+      minChunks: Infinity
+    }
+  ])
 ]);
 
 const productionConfig = merge([
